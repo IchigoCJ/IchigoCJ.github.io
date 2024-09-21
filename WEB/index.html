@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TE AMO</title>
+    <link rel="stylesheet" href="css/index.css">
+
+    <style>
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Fijo */
+            z-index: 1000; /* Sobre otros elementos */
+            left: 0;
+            top: 0;
+            width: 100%; /* Ancho completo */
+            height: 100%; /* Altura completa */
+            overflow: auto; /* Habilita desplazamiento si es necesario */
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+        }
+
+        .modal-content {
+    background-color: white; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 20px;
+    width: 80vw; /* 80% del ancho de la ventana */
+    max-width: 800px; /* Ancho máximo */
+    height: auto; /* Ajusta automáticamente la altura */
+    max-height: 80vh; /* Altura máxima */
+    overflow: hidden; /* Oculta el desbordamiento */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra */
+    display: flex; /* Flexbox para centrar contenido */
+    flex-direction: column; /* Orientación vertical */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+}
+
+.modal-body {
+    width: 100%; /* Asegura que el cuerpo del modal ocupe el 100% */
+}
+
+video {
+    width: 80%; /* Ancho del video ocupa el 100% del modal */
+    height: auto; /* Altura automática para mantener la proporción */
+}
+
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close {
+            cursor: pointer;
+            font-size: 24px; /* Tamaño del icono de cerrar */
+        }
+
+        video {
+            width: 100%; /* Ancho del video */
+            height: auto; /* Altura automática */
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="item">
+            <div class="quote">
+                <pre><p>Yo te amo.... Te amo en todos los universos</pre><span>Dr. Strange</span></p>
+                <button class="videoBtn" data-video="videos/video1.mp4">Video</button>
+            </div>
+        </div>
+        <div class="item">
+            <div class="quote">
+                <pre><p>Solo quiero que estés bien y ya</pre><span>Loki</span></p>
+                <button class="videoBtn" data-video="videos/video2.mp4">Video</button>
+            </div>
+        </div>
+        <div class="item">
+            <div class="quote">
+                <pre><p>Porque te amo, siempre te he amado</pre><span>Thor</span></p>
+                <button class="videoBtn" data-video="videos/video3.mp4">Video</button>
+            </div>
+        </div>
+        <div class="item">
+            <div class="quote">
+                <pre><p>Yo te amo 3 millones</pre><span>Tony Stark</span></p>
+                <button class="videoBtn" data-video="videos/video4.mp4">Video</button>
+            </div>
+        </div>
+        <div class="item">
+            <div class="quote">
+                <pre><p>Nunca dejaría a mi hermosa chica</pre><span>Capitán América</span></p>
+                <button class="videoBtn" data-video="videos/video5.mp4">Video</button>
+            </div>
+        </div>
+        <div class="item">
+            <div class="quote">
+                <pre><p>Tú eres mi camino y siempre vas a ser mi camino</pre><span>Peter Parker</span></p>
+                <button class="videoBtn" data-video="videos/video6.mp4">Video</button>
+            </div>
+        </div>
+    </div>
+
+   <!-- Modal -->
+   <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">TE AMOOOOOOOO MUCHOOOOOO</h5>
+                <span  id="closeModal"></span>
+            </div>
+            <div class="modal-body">
+                <video id="videoPlayer" controls autoplay>
+                    <source id="videoSource" src="" type="video/mp4">
+                    Tu navegador no soporta video.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById("videoModal");
+        const videoPlayer = document.getElementById("videoPlayer");
+        const videoSource = document.getElementById("videoSource");
+        const closeModal = document.getElementById("closeModal");
+
+        document.querySelectorAll('.videoBtn').forEach(button => {
+            button.onclick = function() {
+                const videoPath = this.getAttribute('data-video');
+                videoSource.src = videoPath;
+                videoPlayer.load(); // Cargar el nuevo video
+                modal.style.display = "flex"; // Mostrar el modal
+            };
+        });
+
+        closeModal.onclick = function() {
+            modal.style.display = "none"; // Cerrar el modal
+            videoPlayer.pause(); // Pausar el video al cerrar
+            videoSource.src = ""; // Limpiar la fuente del video
+        };
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none"; // Cerrar el modal al hacer clic fuera
+                videoPlayer.pause(); // Pausar el video al cerrar
+                videoSource.src = ""; // Limpiar la fuente del video
+            }
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;1,400");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Asap", "Poppins", sans-serif;
+  text-shadow: #000 0 0 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: #111;
+}
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+.item {
+  position: relative;
+  flex: calc(100vw / 6) 1 1;
+  background-size: cover;
+  overflow: hidden;
+  filter: saturate(90%);
+  transition: 1s;
+}
+
+.item:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(25deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+}
+
+.item:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+  animation: borderPulse 5s infinite;
+}
+@media (min-width: 1024px) {
+  .item:not(:last-child) {
+    border-right: 1px solid #ccc;
+    border-bottom: none;
+  }
+}
+
+.item:hover {
+  flex-basis: 40%;
+  filter: saturate(120%);
+}
+@media (min-width: 1024px) {
+  .item:hover {
+    flex-basis: 75%;
+  }
+}
+.item:hover .quote {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.item:nth-child(1) {
+  background-image: url("../img/1.jpeg");
+  background-position: 72% 35%;
+}
+
+.item:nth-child(2) {
+  background-image: url("../img/2.jpeg");
+  background-position: 60% 8%;
+}
+
+.item:nth-child(3) {
+  background-image: url("../img/3.jpeg");
+  background-position: 52% 8%;
+}
+
+.item:nth-child(4) {
+  background-image: url("../img/4.jpeg");
+  background-position: 45% 8%;
+}
+
+.item:nth-child(5) {
+  background-image: url("../img/5.jpeg");
+  background-position: 45% 25%;
+}
+
+.item:nth-child(6) {
+  background-image: url("../img/6.jpeg");
+  background-position: 65% 2%;
+}
+
+
+
+
+
+
+  .videoBtn{
+    opacity: 0;
+    transition: 1s;
+    transform: translateX(50%);
+    background-color: #e74c3c;  /* Color rojo intenso */
+    color: white;  /* Texto en blanco */
+    border: none;  /* Sin bordes */
+    padding: 15px 30px;  /* Espaciado interno */
+    font-size: 18px;  /* Tamaño del texto */
+    font-weight: bold;  /* Texto en negrita */
+    border-radius: 50px;  /* Bordes completamente redondeados */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);  /* Sombra para darle profundidad */
+    cursor: pointer;  /* Cambia el cursor al pasar sobre él */
+    transition: all 0.3s ease;  /* Transición suave en todos los cambios */
+}
+
+.item:hover .videoBtn {
+    opacity: 1;
+    transform: translateX(0);
+    background-color: #c0392b;  /* Un tono más oscuro al hacer hover */
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);  /* Aumenta la sombra */
+    transform: translateY(-3px);  /* Efecto de levantamiento */
+}
+
+.videoBtn:active {
+    transform: translateY(1px);  /* Botón ligeramente hundido cuando se hace clic */
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);  /* Disminuye la sombra al hacer clic */
+  }
+
+  
+
+
+  
+
+.quote {
+  position: absolute;
+  color: #fff;
+  bottom: 10%;
+  left: 5rem;
+  width: calc(100% - 10rem);
+  opacity: 0;
+  transition: 1s;
+  transform: translateX(50%);
+}
+@media (min-width: 512px) {
+  .quote {
+    left: 10%;
+    bottom: 10%;
+    width: 20vw;
+  }
+}
+@media (min-width: 1024px) {
+  .quote {
+    left: 10;
+    bottom: 35%;
+    width: 30vw;
+  }
+}
+.quote p {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.7rem;
+  font-size: 1.4rem;
+  text-wrap: balance;
+  font-style: italic;
+}
+.quote p:before, .quote p:after {
+  position: absolute;
+  font-size: 5.5rem;
+  opacity: 0.6;
+}
+.quote p:before {
+  content: "";
+  top: 4rem;
+  left: -2rem;
+  transform: translate(-100%, -100%);
+}
+.quote p:after {
+  content: "";
+  bottom: 2rem;
+  right: -2rem;
+  transform: translate(100%, 100%);
+}
+.quote span {
+  position: absolute;
+  bottom: -2rem;
+  right: 0;
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transform: translate(4rem, 100%);
+}
+.quote span:before {
+  content: "—";
+  margin-right: 0.7rem;
+}
+
+@keyframes borderPulse {
+  0%, 100% {
+    border-color: #cccccc;
+  }
+  25%, 75% {
+    border-color: rgba(204, 204, 255, 0.9);
+  }
+  50% {
+    border-color: rgba(204, 204, 255, 0.5);
+  }
+}
