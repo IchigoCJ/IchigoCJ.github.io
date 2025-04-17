@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestro Libro de Recuerdos</title>
+  <link rel="stylesheet" href="libro.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="particles"></div>
+  
+  <div class="container">
+    <div class="book-container">
+      <!-- Libro cerrado (portada) -->
+      <div class="book closed" id="book-cover">
+        <div class="book-cover">
+          <div class="cover-title">Nuestro Libro de Recuerdos</div>
+          
+          <div class="cover-photos">
+            <div class="photo-frame" style="transform: rotate(-5deg);">
+              <img src="imagenes/libro1.jpeg" alt="Foto 1">
+            </div>
+            <div class="photo-frame" style="transform: rotate(3deg);">
+              <img src="imagenes/fondo.jpeg" alt="Foto 2">
+            </div>
+            <div class="photo-frame" style="transform: rotate(-2deg);">
+              <img src="imagenes/libro2.jpg" alt="Foto 3">
+            </div>
+          </div>
+          
+          <div class="cover-button">
+            <button id="open-book">LEER NUESTRA HISTORIA</button>
+          </div>
+          
+          <div class="cover-decoration">
+            <div class="corner-decoration top-left"></div>
+            <div class="corner-decoration top-right"></div>
+            <div class="corner-decoration bottom-left"></div>
+            <div class="corner-decoration bottom-right"></div>
+          </div>
+        </div>
+        
+        <div class="book-spine"></div>
+        <div class="book-back"></div>
+      </div>
+      
+      <!-- Libro abierto (contenido) -->
+      <div class="book-open hidden" id="book-content">
+        <div class="book-controls">
+          <button id="prev-btn" disabled>Anterior</button>
+          <div class="page-indicator">
+            Página <span id="current-page">1</span> de <span id="total-pages">6</span>
+          </div>
+          <button id="next-btn">Siguiente</button>
+        </div>
+        
+        <div class="book-content">
+          <!-- El contenido de las páginas se cargará dinámicamente -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Plantillas para las páginas del libro -->
+  <template id="page1-template">
+    <div class="page-wrapper">
+      <div class="page">
+        <div class="page-left">
+          <h2 class="page-title">"Hicimos lo más difícil, encontrarnos entre todo el mundo"</h2>
+          <div class="globe-container">
+            <div class="globe"></div>
+            <div class="heart-marker"></div>
+          </div>
+        </div>
+        <div class="page-right">
+          <div class="photo-grid">
+            <div class="photo-item"><img src="imagenes/a.jpeg" alt="Foto 1"></div>
+            <div class="photo-item"><img src="imagenes/b.jpeg" alt="Foto 2"></div>
+            <div class="photo-item"><img src="imagenes/c.jpeg" alt="Foto 3"></div>
+            <div class="photo-item"><img src="imagenes/d.jpeg" alt="Foto 4"></div>
+            <div class="photo-item"><img src="imagenes/e.jpeg" alt="Foto 5"></div>
+            <div class="photo-item"><img src="imagenes/f.jpeg" alt="Foto 6"></div>
+            <div class="photo-item"><img src="imagenes/g.jpeg" alt="Foto 7"></div>
+            <div class="photo-item"><img src="imagenes/h.jpeg" alt="Foto 8"></div>
+            <div class="photo-item"><img src="imagenes/i.jpeg" alt="Foto 9"></div>
+            <div class="photo-item"><img src="imagenes/j.jpeg" alt="Foto 10"></div>
+            <div class="photo-item"><img src="imagenes/k.jpeg" alt="Foto 11"></div>
+            <div class="photo-item"><img src="imagenes/l.jpeg" alt="Foto 12"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <template id="page2-template">
+    <div class="page-wrapper">
+      <div class="page">
+        <div class="page-left">
+          <h2 class="page-title">Nuestras primeras salidas</h2>
+          <div class="memory-list">
+            <div class="memory-item">
+              <div class="memory-photo">
+                <img src="imagenes/cena.jpeg" alt="Primera foto">
+              </div>
+              <div class="memory-text">
+                <h3>Primera foto :)</h3>
+                <p>Una de nuestras primeras fotos.</p>
+              </div>
+            </div>
+            <div class="memory-item">
+              <div class="memory-photo">
+                <img src="imagenes/viaje.jpeg" alt="Nuestro paseo">
+              </div>
+              <div class="memory-text">
+                <h3>Nuestro paseo</h3>
+                <p>Nuestro primer viaje largo :).</p>
+              </div>
+            </div>
+            <div class="memory-item">
+              <div class="memory-photo">
+                <img src="imagenes/date6.jpeg" alt="Día especial">
+              </div>
+              <div class="memory-text">
+                <h3>Primer aniversario</h3>
+                <p>Celebrando nuestro primer año.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-right">
+          <div class="photo-grid-large">
+            <div class="photo-item-large"><img src="imagenes/c.jpeg" alt="Recuerdo 1"></div>
+            <div class="photo-item-large"><img src="imagenes/f2.jpeg" alt="Recuerdo 2"></div>
+            <div class="photo-item-large"><img src="imagenes/f3.jpeg" alt="Recuerdo 3"></div>
+            <div class="photo-item-large"><img src="imagenes/f4.jpeg" alt="Recuerdo 4"></div>
+            <div class="photo-item-large"><img src="imagenes/f5.jpeg" alt="Recuerdo 5"></div>
+            <div class="photo-item-large"><img src="imagenes/playa.png" alt="Recuerdo 6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <template id="page3-template">
+    <div class="page-wrapper">
+      <div class="page">
+        <div class="page-left">
+          <div class="full-page-photo">
+            <img src="imagenes/pequeño.jpg" alt="Momento especial">
+          </div>
+        </div>
+        <div class="page-right">
+          <div class="full-page-photo">
+            <img src="imagenes/pequeña.jpeg" alt="Recuerdo inolvidable">
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <template id="page4-template">
+    <div class="page-wrapper">
+      <div class="page">
+        <div class="page-left">
+          <h2 class="page-title">Crucigrama</h2>
+          <div id="crossword-grid" class="crossword-grid"></div>
+        </div>
+        <div class="page-right">
+          <h3 class="page-subtitle">¡Completa el crucigrama!</h3>
+          <p class="page-description">Cada respuesta correcta revela un poco más de nuestra historia juntos.</p>
+          <div id="crossword-questions" class="crossword-questions"></div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <template id="page5-template">
+    <div class="page-wrapper">
+      <div class="page">
+        <div class="page-left">
+          <h2 class="page-title">Sopa de Letras</h2>
+          <div id="wordsearch-grid" class="wordsearch-grid"></div>
+          <div id="wordsearch-words" class="wordsearch-words"></div>
+        </div>
+        <div class="page-right">
+          <div class="photo-grid-medium">
+            <div class="photo-item-medium"><img src="imagenes/garden.jpeg" alt="Foto 1"></div>
+            <div class="photo-item-medium"><img src="imagenes/atardecer.jpeg" alt="Foto 2"></div>
+            <div class="photo-item-medium"><img src="imagenes/fexticun.jpeg" alt="Foto 3"></div>
+            <div class="photo-item-medium"><img src="imagenes/happyland.jpeg" alt="Foto 4"></div>
+            <div class="photo-item-medium"><img src="imagenes/teatro.jpeg" alt="Foto 5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <template id="page6-template">
+    <div class="page-wrapper">
+      <div class="page">
+        <div class="page-left">
+          <div class="birthday-message">
+            <h2>Feliz Cumpleaños</h2>
+            <p>En este día tan especial, quiero celebrar no solo tu cumpleaños, sino también todo lo que eres y lo que significas para mí.</p>
+            <p>Cada momento contigo es un regalo, cada sonrisa un tesoro, y cada recuerdo una joya que guardaré por siempre.</p>
+            <p class="love-message">Te amo con todo mi corazón.</p>
+          </div>
+        </div>
+        <div class="page-right">
+          <div class="final-message">
+            <h2>TO BE CONTINUED...</h2>
+            <p>Nuestra historia apenas comienza...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <script src="libro.js"></script>
+</body>
+</html>
