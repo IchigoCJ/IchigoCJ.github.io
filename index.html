@@ -1,261 +1,416 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feliz Cumpleaños</title>
-  <link rel="stylesheet" href="p.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="particles"></div>
-  
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">Feliz Cumpleaños</h1>
-      <p class="hero-subtitle">Para el amor de mi vida</p>
-      <div class="scroll-indicator">
-        <span>Desplázate</span>
-        <div class="scroll-arrow"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuestro Libro de Recuerdos</title>
+    <link rel="stylesheet" href="libro.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Estilos para el botón de volver */
+      .back-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        background-color: var(--accent-color);
+        color: var(--light-color);
+        border: none;
+        padding: 10px 20px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.9rem;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .back-button:hover {
+        background-color: var(--book-color);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <button class="back-button" id="back-button">
+      Volver a la Página Principal
+    </button>
+
+    <div class="particles"></div>
+
+    <div class="container">
+      <div class="book-container">
+        <!-- Libro cerrado (portada) -->
+        <div class="book closed" id="book-cover">
+          <div class="book-cover">
+            <div class="cover-title">Nuestro Libro de Recuerdos</div>
+
+            <div class="cover-photos">
+              <div class="photo-frame" style="transform: rotate(-5deg)">
+                <img src="imagenes/libro1.jpeg" alt="Foto 1" />
+              </div>
+              <div class="photo-frame" style="transform: rotate(3deg)">
+                <img src="imagenes/fondo.jpeg" alt="Foto 2" />
+              </div>
+              <div class="photo-frame" style="transform: rotate(-2deg)">
+                <img src="imagenes/libro2.jpg" alt="Foto 3" />
+              </div>
+            </div>
+
+            <div class="cover-button">
+              <button id="open-book">LEER NUESTRA HISTORIA</button>
+            </div>
+
+            <div class="cover-decoration">
+              <div class="corner-decoration top-left"></div>
+              <div class="corner-decoration top-right"></div>
+              <div class="corner-decoration bottom-left"></div>
+              <div class="corner-decoration bottom-right"></div>
+            </div>
+          </div>
+
+          <div class="book-spine"></div>
+          <div class="book-back"></div>
+        </div>
+
+        <!-- Libro abierto (contenido) -->
+        <div class="book-open hidden" id="book-content">
+          <div class="book-controls">
+            <button id="prev-btn" disabled>Anterior</button>
+            <div class="page-indicator">
+              Página <span id="current-page">1</span> de
+              <span id="total-pages">6</span>
+            </div>
+            <button id="next-btn">Siguiente</button>
+          </div>
+
+          <div class="book-content">
+            <!-- El contenido de las páginas se cargará dinámicamente -->
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-  
-  <!-- Main Content -->
-  <div class="container">
-    <header>
-      <div class="flower-decoration left">
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
+
+    <!-- Plantillas para las páginas del libro -->
+    <template id="page1-template">
+      <div class="page-wrapper">
+        <div class="page">
+          <div class="page-left">
+            <h2 class="page-title">
+              "Hicimos lo más difícil, encontrarnos entre todo el mundo"
+            </h2>
+            <div class="globe-container">
+              <div class="globe"></div>
+              <div class="heart-marker"></div>
+            </div>
+          </div>
+          <div class="page-right">
+            <div class="photo-grid">
+              <div class="photo-item">
+                <img src="imagenes/a.jpeg" alt="Foto 1" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/b.jpeg" alt="Foto 2" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/c.jpeg" alt="Foto 3" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/d.jpeg" alt="Foto 4" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/e.jpeg" alt="Foto 5" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/f.jpeg" alt="Foto 6" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/g.jpeg" alt="Foto 7" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/h.jpeg" alt="Foto 8" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/i.jpeg" alt="Foto 9" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/j.jpeg" alt="Foto 10" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/k.jpeg" alt="Foto 11" />
+              </div>
+              <div class="photo-item">
+                <img src="imagenes/l.jpeg" alt="Foto 12" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <h2 class="title">Un día especial</h2>
-      <div class="flower-decoration right">
-        <div class="flower"></div>
-        <div class="flower"></div>
-        <div class="flower"></div>
+    </template>
+
+    <template id="page2-template">
+      <div class="page-wrapper">
+        <div class="page">
+          <div class="page-left">
+            <h2 class="page-title">Nuestras primeras salidas</h2>
+            <div class="memory-list">
+              <div class="memory-item">
+                <div class="memory-photo">
+                  <img src="imagenes/cena.jpeg" alt="Primera foto" />
+                </div>
+                <div class="memory-text">
+                  <h3>Primera foto :)</h3>
+                  <p>Una de nuestras primeras fotos.</p>
+                </div>
+              </div>
+              <div class="memory-item">
+                <div class="memory-photo">
+                  <img src="imagenes/viaje.jpeg" alt="Nuestro paseo" />
+                </div>
+                <div class="memory-text">
+                  <h3>Nuestro paseo</h3>
+                  <p>Nuestro primer viaje largo :).</p>
+                </div>
+              </div>
+              <div class="memory-item">
+                <div class="memory-photo">
+                  <img src="imagenes/date6.jpeg" alt="Día especial" />
+                </div>
+                <div class="memory-text">
+                  <h3>Primer aniversario</h3>
+                  <p>Celebrando nuestro primer año.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="page-right">
+            <div class="photo-grid-large">
+              <div class="photo-item-large">
+                <img src="imagenes/c.jpeg" alt="Recuerdo 1" />
+              </div>
+              <div class="photo-item-large">
+                <img src="imagenes/f2.jpeg" alt="Recuerdo 2" />
+              </div>
+              <div class="photo-item-large">
+                <img src="imagenes/f3.jpeg" alt="Recuerdo 3" />
+              </div>
+              <div class="photo-item-large">
+                <img src="imagenes/f4.jpeg" alt="Recuerdo 4" />
+              </div>
+              <div class="photo-item-large">
+                <img src="imagenes/f5.jpeg" alt="Recuerdo 5" />
+              </div>
+              <div class="photo-item-large">
+                <img src="imagenes/playa.png" alt="Recuerdo 6" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </header>
-    
-    <main>
-      <div class="message-container">
-        <div class="message">
-          <p class="greeting">TE AMO MUCHO</p>
-          <h2 class="name">MI VIDA ENTERA</h2>
-          <div class="divider">
-            <span class="heart">♥</span>
+    </template>
+
+    <template id="page3-template">
+      <div class="page-wrapper">
+        <div class="page">
+          <div class="page-left">
+            <div class="full-page-photo">
+              <img src="imagenes/pequeño.jpg" alt="Momento especial" />
+            </div>
           </div>
-          <p class="quote">
-            "En este día tan especial, celebro no solo tu cumpleaños, sino cada momento que hemos compartido juntos. Eres mi razón de sonreír cada día."
-          </p>
-          <p class="personal-message">
-            Cada instante a tu lado es un regalo, cada sonrisa tuya ilumina mi mundo, y cada recuerdo que construimos juntos es un tesoro que guardaré por siempre en mi corazón.
-          </p>
+          <div class="page-right">
+            <div class="full-page-photo">
+              <img src="imagenes/pequeña.jpeg" alt="Recuerdo inolvidable" />
+            </div>
+          </div>
         </div>
       </div>
-      
-      <!-- Floating Photos Section -->
-      <section class="floating-photos">
-        <h2 class="section-title">Nuestros Momentos</h2>
-        <div class="photos-container">
-          <div class="photo-item floating" style="--delay: 0s; --rotation: -5deg;">
-            <img src="imagenes/pelis.jpeg" alt="Momento especial 1" class="photo-img">
-            <p class="photo-caption">Noche de pelis</p>
+    </template>
+
+    <template id="page4-template">
+      <div class="page-wrapper">
+        <div class="page">
+          <div class="page-left">
+            <h2 class="page-title">Crucigrama</h2>
+            <div id="crossword-grid" class="crossword-grid"></div>
           </div>
-          <div class="photo-item floating" style="--delay: 0.5s; --rotation: 3deg;">
-            <img src="imagenes/atardecer.jpeg" alt="Momento especial 2" class="photo-img">
-            <p class="photo-caption">Atardecer juntos</p>
-          </div>
-          <div class="photo-item floating" style="--delay: 1s; --rotation: -3deg;">
-            <img src="imagenes/cena.jpeg" alt="Momento especial 3" class="photo-img">
-            <p class="photo-caption">Primeras fotos</p>
-          </div>
-          <div class="photo-item floating" style="--delay: 1.5s; --rotation: 5deg;">
-            <img src="imagenes/aventuras.jpeg" alt="Momento especial 4" class="photo-img">
-            <p class="photo-caption">Día de aventuras</p>
-          </div>
-          <div class="photo-item floating" style="--delay: 1s; --rotation: -3deg;">
-            <img src="imagenes/concierto.jpeg" alt="Momento especial 3" class="photo-img">
-            <p class="photo-caption">Concierto</p>
-          </div>
-          <div class="photo-item floating" style="--delay: 1.5s; --rotation: 5deg;">
-            <img src="imagenes/playa.png" alt="Momento especial 4" class="photo-img">
-            <p class="photo-caption">Playita</p>
+          <div class="page-right">
+            <h3 class="page-subtitle">¡Completa el crucigrama!</h3>
+            <p class="page-description">
+              Cada respuesta correcta revela un poco más de nuestra historia
+              juntos.
+            </p>
+            <div id="crossword-questions" class="crossword-questions"></div>
           </div>
         </div>
-      </section>
-      
-      <!-- Timeline Section -->
-      <section class="timeline-section">
-        <h2 class="section-title">Nuestra Historia</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">Primer encuentro</div>
-            <div class="timeline-content">
-              <img src="imagenes/fiesta.jpg" alt="Primer encuentro" class="timeline-img">
-              <h3>Cuando nuestros caminos se cruzaron</h3>
-              <p>El día que te conocí, no supe lo importante que llegarias a ser en mi vida. Tu presencia ilumina mi mundo de una manera inigualable.</p>
-            </div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">Primera cita</div>
-            <div class="timeline-content">
-              <img src="imagenes/musas.jpg" alt="Primera cita" class="timeline-img">
-              <h3>Nuestra primera aventura juntos</h3>
-              <p>Recuerdo cada detalle de nuestra primera cita. Las risas, las conversaciones, y ese momento en que supe que quería pasar más tiempo contigo.</p>
-            </div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date"> Momentos especiales</div>
-            <div class="timeline-content">
-              <img src="imagenes/aventura.jpg" alt="Momentos especiales" class="timeline-img">
-              <h3>Construyendo recuerdos</h3>
-              <p>Cada día contigo es una nueva aventura. Hemos creado tantos recuerdos hermosos que llenan mi corazón de alegría cada vez que pienso en ellos.</p>
-            </div>
-          </div>
-          
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">Hoy</div>
-            <div class="timeline-content">
-              <img src="imagenes/cumple.jpg" alt="Celebración" class="timeline-img">
-              <h3>Celebrando tu día especial</h3>
-              <p>Hoy celebramos no solo tu cumpleaños, sino también todo lo que eres y lo que significas para mí.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Photo Gallery -->
-      <section class="gallery-section">
-        <h2 class="section-title">Galería de Recuerdos (DATES)</h2>
-        <div class="gallery">
-          <div class="gallery-item">
-            <img src="imagenes/date1.jpeg" alt="Recuerdo 1" class="gallery-img">
-          </div>
-          <div class="gallery-item">
-            <img src="imagenes/date2.jpeg" alt="Recuerdo 2" class="gallery-img">
-          </div>
-          <div class="gallery-item">
-            <img src="imagenes/date3.jpeg" alt="Recuerdo 3" class="gallery-img">
-          </div>
-          <div class="gallery-item">
-            <img src="imagenes/date4.jpeg" alt="Recuerdo 4" class="gallery-img">
-          </div>
-          <div class="gallery-item">
-            <img src="imagenes/date5.jpeg" alt="Recuerdo 5" class="gallery-img">
-          </div>
-          <div class="gallery-item">
-            <img src="imagenes/date6.jpeg" alt="Recuerdo 6" class="gallery-img">
-          </div>
-          <div class="gallery-item">
-            <img src="imagenes/date7.jpeg" alt="Recuerdo 7" class="gallery-img">
-          </div>
-          <div class="gallery-item">
-            <img src="imagenes/date8.jpeg" alt="Recuerdo 8" class="gallery-img">
-          </div>
-        </div>
-      </section>
-      
-      <!-- Reasons Section -->
-      <section class="reasons-section">
-        <h2 class="section-title">Razones por las que te amo</h2>
-        <div class="reasons-container">
-          <div class="reason-card">
-            <div class="reason-number">01</div>
-            <h3>Tu sonrisa</h3>
-            <p>Ilumina hasta mi día más oscuro y me hace sentir que a tu lado todo es posible.</p>
-          </div>
-          <div class="reason-card">
-            <div class="reason-number">02</div>
-            <h3>Tu corazón</h3>
-            <p>La forma en que te preocupas por tus allegados muestra lo bello que es tu corazon.</p>
-          </div>
-          <div class="reason-card">
-            <div class="reason-number">03</div>
-            <h3>Tu inteligencia</h3>
-            <p>No hay dia que no admire lo inteligente que eres.</p>
-          </div>
-          <div class="reason-card">
-            <div class="reason-number">04</div>
-            <h3>Tu risa</h3>
-            <p>Es mi sonido favorito en todo el mundo.</p>
-          </div>
-          <div class="reason-card">
-            <div class="reason-number">05</div>
-            <h3>Tu compañía</h3>
-            <p>Contigo, hasta los momentos más simples se vuelven extraordinarios.</p>
-          </div>
-          <div class="reason-card">
-            <div class="reason-number">06</div>
-            <h3>Tu mirada</h3>
-            <p>En tus ojos encuentro mi hogar, paz y amor.</p>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Parallax Quote Section -->
-      <section class="parallax-section">
-        <div class="parallax-content">
-          <h2 class="parallax-quote">"Eres eso que no sabía que me hacía falta, pero que ahora que estás, no me puedo imaginar sin ti"</h2>
-        </div>
-      </section>
-      
-      <!-- Rotating Photo Cube -->
-      <section class="cube-section">
-        <h2 class="section-title">Momentos Especiales</h2>
-        <div class="scene"><br><br><br><br> 
-          <div class="cube">
-            <div class="cube-face front">
-              <img src="imagenes/git1.jpeg" alt="Momento 1">
-            </div>
-            <div class="cube-face back">
-              <img src="imagenes/git2.jpeg" alt="Momento 2">
-            </div>
-            <div class="cube-face right">
-              <img src="imagenes/git3.jpeg" alt="Momento 3">
-            </div>
-            <div class="cube-face left">
-              <img src="imagenes/git4.jpeg"Momento 4">
-            </div>
-            <div class="cube-face top">
-              <img src="imagenes/git5.png" alt="Momento 5">
-            </div>
-            <div class="cube-face bottom">
-              <img src="imagenes/git6.png" alt="Momento 6">
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- Final Message -->
-      <section class="final-message">
-        <div class="message-box">
-          <h2>Feliz Cumpleaños, Mi Amor</h2>
-          <p>Que este día sea tan especial como tú lo eres para mí. Que cada momento esté lleno de alegría, amor y felicidad. Estoy agradecido por tenerte en mi vida y por todos los hermosos recuerdos que hemos creado juntos.</p>
-          <p>Te amo hoy, mañana y siempre.</p>
-        </div>
-      </section>
-      
-      <div class="button-container">
-        <a href="libro.html"><button class="memory-book-button">VER LIBRO DE RECUERDOS</button></a>
       </div>
-    </main>
-    
-    <footer>
-      <p class="footer-text">Con todo mi amor, para ti :)</p>
-      <p class="date">Espero te guste</p>
-    </footer>
-  </div>
-  
-  <script src="p.js"></script>
-</body>
+    </template>
+
+    <template id="page5-template">
+      <div class="page-wrapper">
+        <div class="page">
+          <div class="page-left">
+            <h2 class="page-title">Sopa de Letras</h2>
+            <div id="wordsearch-grid" class="wordsearch-grid"></div>
+            <div id="wordsearch-words" class="wordsearch-words"></div>
+          </div>
+          <div class="page-right">
+            <div class="photo-grid-medium">
+              <div class="photo-item-medium">
+                <img src="imagenes/garden.jpeg" alt="Foto 1" />
+              </div>
+              <div class="photo-item-medium">
+                <img src="imagenes/atardecer.jpeg" alt="Foto 2" />
+              </div>
+              <div class="photo-item-medium">
+                <img src="imagenes/fexticun.jpeg" alt="Foto 3" />
+              </div>
+              <div class="photo-item-medium">
+                <img src="imagenes/happyland.jpeg" alt="Foto 4" />
+              </div>
+              <div class="photo-item-medium">
+                <img src="imagenes/teatro.jpeg" alt="Foto 5" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="page6-template">
+      <div class="page-wrapper">
+        <div class="page">
+          <div class="page-left">
+            <div class="birthday-message">
+              <h2>Feliz Cumpleaños</h2>
+              <p>
+                En este día tan especial, quiero celebrar no solo tu cumpleaños,
+                sino también todo lo que eres y lo que significas para mí.
+              </p>
+              <p>
+                Cada momento contigo es un regalo, cada sonrisa un tesoro, y
+                cada recuerdo una joya que guardaré por siempre.
+              </p>
+              <p class="love-message">Te amo con todo mi corazón.</p>
+            </div>
+          </div>
+          <div class="page-right">
+            <div class="final-message">
+              <h2>TO BE CONTINUED...</h2>
+              <p>Nuestra historia apenas comienza...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script src="libro.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Botón para volver a la página principal
+        document
+          .getElementById("back-button")
+          .addEventListener("click", function () {
+            // Al volver a index.html, guardar la posición actual de la música
+            const music = document.getElementById("background-music");
+            if (music && !music.paused) {
+              localStorage.setItem("musicTime", music.currentTime);
+              localStorage.setItem("musicPlaying", "true");
+            } else if (music) {
+              localStorage.setItem("musicPlaying", "false");
+            }
+            
+            // Volver a la página principal
+            window.location.href = "index.html";
+          });
+
+        // Verificar si hay música guardada en localStorage
+        const savedMusicTime = localStorage.getItem("musicTime");
+        const savedMusicPlaying = localStorage.getItem("musicPlaying");
+
+        // Crear elemento de audio si no existe
+        let music = document.getElementById("background-music");
+        if (!music) {
+          music = document.createElement("audio");
+          music.id = "background-music";
+          music.loop = true;
+
+          const source = document.createElement("source");
+          source.src = "musica.mp3";
+          source.type = "audio/mp3";
+
+          music.appendChild(source);
+          document.body.appendChild(music);
+
+          // Añadir control de música
+          const musicControl = document.createElement("div");
+          musicControl.className = "music-control";
+          musicControl.id = "music-control";
+          musicControl.style.position = "fixed";
+          musicControl.style.bottom = "20px";
+          musicControl.style.right = "20px";
+          musicControl.style.zIndex = "1000";
+          musicControl.style.backgroundColor = "var(--accent-color, #ff6b6b)";
+          musicControl.style.color = "white";
+          musicControl.style.width = "50px";
+          musicControl.style.height = "50px";
+          musicControl.style.borderRadius = "50%";
+          musicControl.style.display = "flex";
+          musicControl.style.alignItems = "center";
+          musicControl.style.justifyContent = "center";
+          musicControl.style.cursor = "pointer";
+          musicControl.style.boxShadow = "0 3px 10px rgba(0, 0, 0, 0.2)";
+          musicControl.style.transition = "all 0.3s ease";
+
+          const musicIcon = document.createElement("span");
+          musicIcon.id = "music-icon";
+          musicIcon.textContent = "♫";
+          musicControl.appendChild(musicIcon);
+
+          document.body.appendChild(musicControl);
+
+          // Manejar clic en control de música
+          let isMusicPlaying = false;
+          musicControl.addEventListener("click", function () {
+            if (isMusicPlaying) {
+              music.pause();
+              musicIcon.textContent = "♪";
+              isMusicPlaying = false;
+              localStorage.setItem("musicPlaying", "false");
+            } else {
+              music.play();
+              musicIcon.textContent = "♫";
+              isMusicPlaying = true;
+              localStorage.setItem("musicPlaying", "true");
+            }
+          });
+        }
+
+        // Restaurar la música si estaba sonando
+        if (savedMusicPlaying === "true" && savedMusicTime) {
+          music.currentTime = parseFloat(savedMusicTime);
+          music
+            .play()
+            .then(() => {
+              document.getElementById("music-icon").textContent = "♫";
+              document.getElementById("music-control").style.display = "flex";
+            })
+            .catch((error) => {
+              console.error("Error al restaurar música:", error);
+              document.getElementById("music-control").style.display = "flex";
+            });
+        }
+      });
+    </script>
+  </body>
 </html>
